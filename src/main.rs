@@ -4,7 +4,7 @@ use std::io::Read;
 
 mod day_1;
 
-type DayFunction = fn(String) -> String;
+type DayFunction = fn(String) -> (String, String);
 
 fn main() {
     let days: [DayFunction; 1] = [day_1::day];
@@ -18,5 +18,7 @@ fn main() {
         .read_to_string(&mut input)
         .expect("Failed to read input file, right day entered?");
 
-    println!("Result: {}", days[day - 1](input));
+    let result = days[day - 1](input);
+    println!("Result A: {}", result.0);
+    println!("Result B: {}", result.1);
 }
